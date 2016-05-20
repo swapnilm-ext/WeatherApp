@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Wheather Ststus</title>
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body ng-app ="weatherModule" ng-controller="weatherController"  class="container">
+  <form role="form">
+    <div class="form-group">
+    <p></p>
+		<div class="row">
+		   <div class="col-md-4">
+		    <input class="form-control" type="text" ng-model="zipCode" placeholder="Zip code or City">
+
+		   </div>
+		   <div class="col-md-4">
+		      <input type="button" class="btn btn-default" ng-click="checkWeather(zipCode);" value="Check wheather" width="50px"/>
+		   </div>
+		</div>
+	  
+	    </div>
+	</div>
+
+  </form>
+  <div>
+    <input type="checkbox" ng-model="showObservation">Observation Location
+    <input type="checkbox" ng-model="showGenralInfo">Show Genral Information
+    <input type="checkbox" ng-model="showForecast">Show Forecast
+  </div>
+  	<!-- <image style="float:left" src="{{result.image.url}}"><p></p> -->
+  	<div  style="width:70%;float:left;">
+   <fieldset style="float:left">
+        <legend style="color:blue;font-weight:bold;">Display Location</legend>
+	  Display Location Full: {{result.display_location.full}}<br>
+	  Display Location City: {{result.display_location.city}}<br>
+	  Display Location State: {{result.display_location.state}}<br>
+	  Display Location State Name: {{result.display_location.state_name}}<br>
+	  Display Location Country: {{result.display_location.country}}<br>
+	  Display Location Country_Iso3166: {{result.display_location.country_iso3166}}<br>
+	  Display Location zip: {{result.display_location.zip}}<br>
+	  Display Location magic: {{result.display_location.magic}}<br>
+	  Display Location wmo: {{result.display_location.wmo}}<br>
+	  Display Location Location: {{result.display_location.latitude}}<br>
+	  Display Location Longitude: {{result.display_location.longitude}}<br>
+	  Display Location Elevation: {{result.display_location.elevation}}<br>
+   </fieldset>
+   <fieldset style="float:left" ng-show="showObservation">
+     <legend style="color:blue;font-weight:bold;">Observation Location</legend>
+	  Observation Location Full: {{result.observation_location.full}}<br>
+	  Observation Location City:{{result.observation_location.city}}<br>
+	  Observation Location State:{{result.observation_location.state}}<br>
+	  Observation Location Country:{{result.observation_location.country}}<br>
+	  Observation Location Country_Iso3166:{{result.observation_location.country_iso3166}}<br>
+	  Observation Location Latitude:{{result.observation_location.latitude}}<br>
+	  Observation Location Longitude:{{result.observation_location.longitude}}<br>
+	  Observation Location Elevation:{{result.observation_location.elevation}}<br>
+   </fieldset>
+	<fieldset style="float:right"  ng-show="showGenralInfo">
+	 <legend style="color:blue;font-weight:bold;">Genral Information</legend>
+	 <image src="{{result.icon_url}}"><br>
+	  station_id: {{result.station_id}}<br>
+	  observation_time: {{result.observation_time}}<br>
+	  observation_time_rfc822: {{result.observation_time_rfc822}}<br>
+	  observation_epoch: {{result.observation_epoch}}<br>
+	  local_time_rfc822: {{result.local_time_rfc822}}<br>
+	  local_epoch: {{result.local_epoch}}<br>
+	  local_tz_short: {{result.local_tz_short}}<br>
+	  local_tz_long: {{result.local_tz_long}}<br>
+	  local_tz_offset: {{result.local_tz_offset}}<br>
+	  weather: {{result.weather}}<br>
+	  temperature_string: {{result.temperature_string}}<br>
+	  temp_f: {{result.temp_f}}<br>
+	  temp_c: {{result.temp_c}}<br>
+	  relative_humidity: {{result.relative_humidity}}<br>
+	  wind_string: {{result.wind_string}}<br>
+	  wind_dir: {{result.wind_dir}}<br>
+	  wind_degrees" {{result.wind_degrees}}<br>
+	  wind_mph: {{result.wind_mph}}<br>
+	  wind_gust_mph: {{result.wind_gust_mph}}<br>
+	  wind_kph: {{result.wind_kph}}<br>
+	  wind_gust_kph: {{result.wind_gust_kph}}<br>
+	  pressure_mb: {{result.pressure_mb}}<br>
+	  pressure_in: {{result.pressure_in}}<br>
+	  pressure_trend: {{result.pressure_trend}}<br>
+	  dewpoint_string: {{result.dewpoint_string}}<br>
+	  dewpoint_f: {{result.dewpoint_f}}<br>
+	  dewpoint_c: {{result.dewpoint_c}}<br>
+	  heat_index_string" {{result.heat_index_string}}<br>
+	  heat_index_f: {{result.heat_index_f}}<br>
+	  heat_index_c: {{result.heat_index_c}}<br>
+	  windchill_string: {{result.windchill_string}}<br>
+	  windchill_f: {{result.windchill_f}}<br>
+	  windchill_c: {{sult.windchill_c}}<br>
+	  feelslike_string: {{sult.feelslike_string}}<br>
+	  feelslike_f: {{sult.feelslike_f}}<br>
+	  feelslike_c: {{sult.feelslike_c}}<br>
+	  visibility_mi: {{sult.visibility_mi}}<br>
+	  visibility_km: {{sult.visibility_km}}<br>
+	  solarradiation: {{sult.solarradiation}}<br>
+	  UV: {{sult.UV}}<br>
+	  precip_1hr_string: {{sult.precip_1hr_string}}<br>
+	  precip_1hr_in: {{sult.precip_1hr_in}}<br>
+	  precip_1hr_metric:{{result.precip_1hr_metric}}<br>
+	  {{result.precip_today_string}}<br>
+	  {{result.precip_today_in}}<br>
+	  {{result.precip_today_metric}}<br>
+	  {{result.icon}}<br>
+	  {{result.icon_url}}<br>
+	  
+	</fieldset>
+	</div>
+	 <div style="width:30%;float:right" ng-show="showForecast">
+	 <legend style="color:blue;font-weight:bold;">Forecast</legend>
+	  <table class="table table-striped">
+		  <tr>
+		  <td>Date</td>
+		  <td>Wheather Condition</td>
+		  <td>Image</td>
+		  </tr>
+		  <tr ng-repeat="row in forecastData.forecast.simpleforecast.forecastday">
+		    <td>
+		    {{row.date.weekday}}  {{row.date.day}} {{row.date.monthname}}
+		    </td>
+		    <td>
+		      {{row.conditions}}
+		    </td>
+		    <td>
+		     <img src={{row.icon_url}}>
+		    </td>
+		    
+		  </tr>
+	  <table>
+     </table>
+     </div>
+	 <style>
+       fieldset{width:30%;}
+	 </style>
+</body>
+
+<script type="text/javascript">
+   var app = angular.module('weatherModule',[]);
+   app.controller('weatherController',function($scope,$http){
+     $scope.zipCode = "Mumbai";
+     $scope.checkWeather =function(zipCode){
+     	$http.get('http://localhost:8000/getWeather/'+zipCode+'.json').then(function(responce){
+	      $scope.result = responce.data.current_observation;
+	    });
+	    $http.get('http://localhost:8000/getWeatherForecast/'+zipCode+'.json').then(function(responce){
+	    	console.log(responce.data);
+	    	$scope.forecastData =responce.data;
+	    });
+     }
+   });
+</script>
+
+</html>
